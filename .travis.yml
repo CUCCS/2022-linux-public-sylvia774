@@ -1,0 +1,44 @@
+language: bash
+
+before_install:
+  - sudo apt update && sudo apt install -y shellcheck imagemagick p7zip-full ghostscript
+  - ls -l
+
+script:
+  - wget "https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x04/worldcupplayerinfo.tsv"
+  - wget "https://c4pr1c3.github.io/LinuxSysAdmin/exp/chap0x04/web_log.tsv.7z"
+  - 7z x -ot web_log.tsv.7z
+  - ls -l
+  - cd chap0x04/  
+  - cd code/ 
+  - shellcheck imgProcessor.sh
+  - echo Task1
+  - bash imgProcessor.sh
+  - bash imgProcessor.sh -q ./img 90
+  - bash imgProcessor.sh -r ./img 90
+  - bash imgProcessor.sh -w ./img syl center 20
+  - cd img/ && ls && cd ..
+  - bash imgProcessor.sh -p ./img Pre
+  - bash imgProcessor.sh -s ./img Suf
+  - bash imgProcessor.sh -t ./img
+  - cd img/ && ls && cd ..
+  - shellcheck textBatch-1.sh
+  - echo Task2-1
+  - bash textBatch-1.sh
+  - bash textBatch-1.sh -r
+  - bash textBatch-1.sh -p
+  - bash textBatch-1.sh -n
+  - bash textBatch-1.sh -a
+  - shellcheck textBatch-2.sh
+  - echo Task2-2
+  - bash textBatch-2.sh
+  - bash textBatch-2.sh -t
+  - bash textBatch-2.sh -i
+  - bash textBatch-2.sh -u
+  - bash textBatch-2.sh -s
+  - bash textBatch-2.sh -c
+  - bash textBatch-2.sh -f /software/winvn/winvn.html/bluemarb.gif
+
+notifications:
+  email:
+    on_success: never
