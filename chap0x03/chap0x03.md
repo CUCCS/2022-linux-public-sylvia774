@@ -13,7 +13,7 @@
 
 ## 实验要求
 
-#### 动手实战Systemd
+### 动手实战Systemd
 
 - [Systemd 入门教程：命令篇 by 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 
@@ -21,7 +21,7 @@
 
   - 参照第2章作业的要求，完整实验操作过程通过[asciinema](https://asciinema.org/)进行录像并上传，文档通过`github`上传
 
-#### 本章完成后的自查清单
+### 本章完成后的自查清单
 
 - 如何添加一个用户并使其具备`sudo`执行程序的权限？
 - 如何将一个用户添加到一个用户组？
@@ -702,6 +702,14 @@
   不知道下一步怎么做了，询问了HW老师，才发现之前自己做的和题目意思八竿子打不着。
 
   原来是在[Unit]依赖关系上做文章，编写配置文件`Requires=`依赖网络的相关字段，实现不同情况下的不同操作。这道题目参考了WR同学的作业思路，并进行了改进。
+
+- 修改报告标题语法
+
+  ![](img/title.jpg)
+
+  编辑删除`network-on`脚本文件`echo "the network is on!"`，防止出现污染脚本情况
+
+  ![](img/journal2.jpg)
 
 ## 参考链接
 
