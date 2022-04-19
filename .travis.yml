@@ -1,21 +1,19 @@
 language: bash
 
 before_install:
-  - sudo apt update && sudo apt install -y shellcheck imagemagick p7zip-full ghostscript
-  - ls -l
+  - sudo apt update && sudo apt install -y shellcheck imagemagick p7zip-full librsvg2-bin ghostscript
 
 script:
-  - wget "https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x04/worldcupplayerinfo.tsv"
-  - wget "https://c4pr1c3.github.io/LinuxSysAdmin/exp/chap0x04/web_log.tsv.7z"
-  - 7z x -ot web_log.tsv.7z
-  - ls -l
-  - cd chap0x04/  
-  - cd code/ 
+  - cd chap0x04/code/ && ls -l
   - shellcheck imgProcessor.sh
   - echo Task1
   - bash imgProcessor.sh
+  - identify ./img/1.jpg
   - bash imgProcessor.sh -q ./img 90
+  - identify ./img/1.jpg
+  - cd img/ && identify 1.jpg 2.png 3.svg && cd ..
   - bash imgProcessor.sh -r ./img 90
+  - cd img/ && identify 1.jpg 2.png new.svg && cd ..
   - bash imgProcessor.sh -w ./img syl center 20
   - cd img/ && ls && cd ..
   - bash imgProcessor.sh -p ./img Pre
