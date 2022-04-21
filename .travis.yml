@@ -1,0 +1,42 @@
+language: bash
+
+before_install:
+  - sudo apt update && sudo apt install -y shellcheck imagemagick p7zip-full librsvg2-bin ghostscript
+
+script:
+  - cd chap0x04/code/ && ls -l
+  - shellcheck imgProcessor.sh
+  - echo Task1
+  - bash imgProcessor.sh
+  - identify ./img/1.jpg
+  - bash imgProcessor.sh -q ./img 90
+  - identify ./img/1.jpg
+  - cd img/ && identify 1.jpg 2.png 3.svg && cd ..
+  - bash imgProcessor.sh -r ./img 90
+  - cd img/ && identify 1.jpg 2.png new.svg && cd ..
+  - bash imgProcessor.sh -w ./img syl center 20
+  - cd img/ && ls && cd ..
+  - bash imgProcessor.sh -p ./img Pre
+  - bash imgProcessor.sh -s ./img Suf
+  - bash imgProcessor.sh -t ./img
+  - cd img/ && ls && cd ..
+  - shellcheck textBatch-1.sh
+  - echo Task2-1
+  - bash textBatch-1.sh
+  - bash textBatch-1.sh -r
+  - bash textBatch-1.sh -p
+  - bash textBatch-1.sh -n
+  - bash textBatch-1.sh -a
+  - shellcheck textBatch-2.sh
+  - echo Task2-2
+  - bash textBatch-2.sh
+  - bash textBatch-2.sh -t
+  - bash textBatch-2.sh -i
+  - bash textBatch-2.sh -u
+  - bash textBatch-2.sh -s
+  - bash textBatch-2.sh -c
+  - bash textBatch-2.sh -f /software/winvn/winvn.html/bluemarb.gif
+
+notifications:
+  email:
+    on_success: never
